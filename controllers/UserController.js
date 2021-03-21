@@ -24,13 +24,13 @@ module.exports.User = (req, res) => {
                 service: 'gmail', 
                 host: 'smtp.gmail.com',
                 auth: { 
-                    email: 'dhruv.singhal2612@gmail.com',
-                    pass: 'Somya@2612'
+                    email: 'my_email',
+                    pass: 'my_password'
                 } 
             }); 
               
             let mailDetails = { 
-                from: '"dhruv.singhal2612" <dhruv.singhal2612@gmail.com>', 
+                from: 'my_email', 
                 to: req.body.email, 
                 subject: 'from dhruv singhal as a project', 
                 text: 'your data is successfully stored on our database'
