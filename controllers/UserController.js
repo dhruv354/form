@@ -21,7 +21,7 @@ module.exports.User = (req, res) => {
                 host: 'smtp.gmail.com',
                 auth: { 
                     user: 'dhruv.singhal2612@gmail.com',
-                    pass: 'Somya@2612'
+                    pass: your_password
                 } 
             }); 
               
