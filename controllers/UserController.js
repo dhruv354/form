@@ -10,21 +10,17 @@ module.exports.User = (req, res) => {
         //error in creating the user
         if(err){console.log('error in creating the user');}
 
-        //if user doesnot initially exist in the daatbase
+        //if user doesnot initially exist in the database
         if(!user){
             User.create(req.body, function(err, user){
                 if(err){console.log('error');}
                 console.log('User created');
             })
-            return res.send('<script>alert("User created")</script>');
-        }
-        else{
-            console.log('User already present in the database');
             let mailTransporter = nodemailer.createTransport({ 
                 service: 'gmail', 
                 host: 'smtp.gmail.com',
                 auth: { 
-                    email: 'dhruv.singhal2612@gmail.com',
+                    user: 'dhruv.singhal2612@gmail.com',
                     pass: 'Somya@2612'
                 } 
             }); 
@@ -43,6 +39,10 @@ module.exports.User = (req, res) => {
                     console.log('Email sent successfully'); 
                 } 
             });
+            return res.send('<script>alert("User created")</script>');
+        }
+        else{
+            console.log('User already present in the database');
             res.send('<script>alert("your have already got mail from our side")</script>')
         }
     })
