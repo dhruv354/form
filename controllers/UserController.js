@@ -2,10 +2,10 @@ const User = require('../models/User')
 const nodemailer = require('nodemailer')
 
 module.exports.User = (req, res) => {
-    //check if password and confirm password entered are same or not
     if(req.body.password != req.body.confirm_password){
-        res.send('<script>alert("password and confirm password dont match")</script>')
-        res.redirect('back')
+        // res.write('<script>alert("password and confirm password dont match")</script>')
+        console.log('password and confirm password dont match');
+       return res.redirect('back')
     }
     
     User.findOne({email: req.body.email}, function(err, user){
@@ -18,39 +18,27 @@ module.exports.User = (req, res) => {
                 if(err){console.log('error');}
                 console.log('User created');
             })
-            //create a create transport object with your credentials and which email service you want to use
-            //use your gmail email and password here 
+            //create transport object which takes service name
+            //and credentials which you need to send an email
             let mailTransporter = nodemailer.createTransport({ 
                 service: 'gmail', 
                 host: 'smtp.gmail.com',
                 auth: { 
-<<<<<<< HEAD
-                    user: 'dhruv.singhal2612@gmail.com',//your email here i have used my email
-                    pass: your_password
-||||||| d95ab91
-                    email: 'dhruv.singhal2612@gmail.com',
-                    pass: 'Somya@2612'
-=======
-                    email: 'my_email',
-                    pass: 'my_password'
->>>>>>> ba50e7bb1e9db74a948525c8aadae4040c3e3af8
+                    user: 'dhruv.singhal2612@gmail.com', 
+                    pass: my_passwords 
                 } 
             }); 
-              
-            //details about whom to send with email subject and message
+            
+            //object that contains reciever's mail and   
             let mailDetails = { 
-<<<<<<< HEAD
-                from: '"dhruv.singhal2612" <dhruv.singhal2612@gmail.com>', //your email
-||||||| d95ab91
-                from: '"dhruv.singhal2612" <dhruv.singhal2612@gmail.com>', 
-=======
-                from: 'my_email', 
->>>>>>> ba50e7bb1e9db74a948525c8aadae4040c3e3af8
-                to: req.body.email, 
-                subject: 'from dhruv singhal as a project', 
-                text: 'your data is successfully stored on our database'
+                from: '"dhruv.singhal2612" <dhruv.singhal2612@gmail.com>', //your mail
+                to: req.body.email,  //receiver mail
+                subject: 'from dhruv singhal as a project',  //subject for email
+                text: 'your data is successfully stored on our database' // content inside email
             }; 
-            //send email with a callback regarding success of the event
+            
+
+            //callback to check if event is successfully completed or not
             mailTransporter.sendMail(mailDetails, function(err, data) { 
                 if(err) { 
                     console.log(err); 
@@ -60,10 +48,11 @@ module.exports.User = (req, res) => {
             });
             return res.send('<script>alert("User created")</script>');
         }
-        // if user has already sent an email just tell him that he has been already added in the database
         else{
+            //if user is already present in the database dont send another mail
             console.log('User already present in the database');
-            return res.send('<script>alert("your have already got mail from our side")</script>')
+            return res.write('<script>alert("your have already got mail from our side")</script>')
+        //    return  res.redirect('back')
         }
     })
 }
