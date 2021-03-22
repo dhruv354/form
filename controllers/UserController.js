@@ -24,14 +24,28 @@ module.exports.User = (req, res) => {
                 service: 'gmail', 
                 host: 'smtp.gmail.com',
                 auth: { 
+<<<<<<< HEAD
                     user: 'dhruv.singhal2612@gmail.com',//your email here i have used my email
                     pass: your_password
+||||||| d95ab91
+                    email: 'dhruv.singhal2612@gmail.com',
+                    pass: 'Somya@2612'
+=======
+                    email: 'my_email',
+                    pass: 'my_password'
+>>>>>>> ba50e7bb1e9db74a948525c8aadae4040c3e3af8
                 } 
             }); 
               
             //details about whom to send with email subject and message
             let mailDetails = { 
+<<<<<<< HEAD
                 from: '"dhruv.singhal2612" <dhruv.singhal2612@gmail.com>', //your email
+||||||| d95ab91
+                from: '"dhruv.singhal2612" <dhruv.singhal2612@gmail.com>', 
+=======
+                from: 'my_email', 
+>>>>>>> ba50e7bb1e9db74a948525c8aadae4040c3e3af8
                 to: req.body.email, 
                 subject: 'from dhruv singhal as a project', 
                 text: 'your data is successfully stored on our database'
